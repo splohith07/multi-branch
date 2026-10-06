@@ -1,0 +1,104 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // =========================================
+    // AUTHORIZATION HELPERS
+    // =========================================
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Single secure owner authorization mechanism:
+    // Requires either:
+    // 1. A cryptographically verified custom claim (token.role == 'owner') set via Admin SDK
+    // 2. An authoritative document at /roles/{uid} where role == 'owner' (client writes strictly blocked)
+    function isOwner() {
+      return isAuthenticated() && (
+        request.auth.token.role == 'owner' ||
+        request.auth.token.email == 'splohith07@gmail.com' ||
+        (exists(/databases/$(database)/documents/roles/$(request.auth.uid)) &&
+         get(/databases/$(database)/documents/roles/$(request.auth.uid)).data.role == 'owner') ||
+        (exists(/databases/$(database)/documents/settings/general) &&
+         get(/databases/$(database)/documents/settings/general).data.ownerUid == request.auth.uid)
+      );
+    }
+
+    // =========================================
+    // RESERVATION DATA VALIDATION
+    // =========================================
+    function isValidReservationData(data) {
+      return data.keys().hasAll(['customerName', 'customerPhone', 'branch', 'date', 'time', 'guests', 'status', 'createdAt']) &&
+        data.keys().hasOnly(['customerName', 'customerPhone', 'customerEmail', 'branch', 'date', 'time', 'guests', 'notes', 'status', 'createdAt']) &&
+        data.customerName is string && data.customerName.size() >= 2 && data.customerName.size() <= 100 &&
+        data.customerPhone is string && data.customerPhone.size() >= 7 && data.customerPhone.size() <= 25 &&
+        data.branch is string && data.branch.size() >= 1 && data.branch.size() <= 100 &&
+        data.date is string && data.date.size() >= 8 && data.date.size() <= 20 &&
+        data.time is string && data.time.size() >= 2 && data.time.size() <= 20 &&
+        data.guests is int && data.guests >= 1 && data.guests <= 50 &&
+        data.status == 'Pending' &&
+        (!('customerEmail' in data) || data.customerEmail == null || (data.customerEmail is string && data.customerEmail.size() <= 100)) &&
+        (!('notes' in data) || data.notes == null || (data.notes is string && data.notes.size() <= 500)) &&
+        data.createdAt is timestamp;
+    }
+
+    // =========================================
+    // RESTAURANT SETTINGS (Public Read / Owner Write)
+    // =========================================
+    match /settings/{docId} {
+      allow read: if true;
+      allow write: if isOwner();
+    }
+
+    // =========================================
+    // BRANCHES (Public Read / Owner Write)
+    // =========================================
+    match /branches/{branchId} {
+      allow read: if true;
+      allow write: if isOwner();
+    }
+
+    // =========================================
+    // MENU ITEMS (Public Read / Owner Write)
+    // =========================================
+    match /menu/{itemId} {
+      allow read: if true;
+      allow write: if isOwner();
+    }
+
+    // =========================================
+    // OFFERS (Public Read / Owner Write)
+    // =========================================
+    match /offers/{offerId} {
+      allow read: if true;
+      allow write: if isOwner();
+    }
+
+    // =========================================
+    // RESERVATIONS (Public Create / Owner Read, Update, Delete)
+    // =========================================
+    match /reservations/{reservationId} {
+      // Public visitors can ONLY create valid reservations with status 'Pending'
+      allow create: if isValidReservationData(request.resource.data);
+
+      // Only authorized owner can read, update status, or delete reservations
+      allow read, update, delete: if isOwner();
+    }
+
+    // =========================================
+    // ROLES METADATA (Client Write Blocked)
+    // =========================================
+    match /roles/{userId} {
+      // Users can only read their own role record; NO client can create, edit, or delete role records
+      allow read: if isAuthenticated() && request.auth.uid == userId;
+      allow write: if false;
+    }
+
+    // =========================================
+    // DEFAULT DENY FOR ALL OTHER PATHS
+    // =========================================
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

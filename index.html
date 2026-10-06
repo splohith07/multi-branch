@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Spice Table | Multi-Branch Restaurant</title>
+    <meta name="description" content="The Spice Table premium multi-branch restaurant website demo.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="multi-branch.css">
+</head>
+
+<body>
+
+    <!-- OWNER TOP BAR (visible when owner is logged in) -->
+    <div id="ownerTopBar" class="owner-bar">
+        <div class="owner-bar-info">
+            <span class="owner-indicator"></span>
+            <span>Owner Mode: <strong id="ownerUserEmail">Authenticated Owner</strong></span>
+        </div>
+        <div class="owner-bar-actions">
+            <button id="openDashboardBtn" class="owner-btn primary">⚙️ Owner Dashboard</button>
+            <button id="ownerSignOutBtn" class="owner-btn outline">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <a href="index.html" class="logo" id="brandLogo">
+            <span>THE</span> SPICE TABLE
+        </a>
+
+        <nav>
+            <a href="#branches">Branches</a>
+            <a href="#menu">Menu</a>
+            <a href="#about">About</a>
+            <a href="#reservation">Reservations</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <a href="#reservation" class="nav-button">
+                Book a Table
+            </a>
+            <button id="navOwnerBtn" class="nav-button" style="background: transparent; cursor: pointer;">
+                Owner Login
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="eyebrow" id="heroEyebrow">
+                MULTI-BRANCH RESTAURANT
+            </span>
+
+            <h1 id="heroTitle">
+                One Brand.
+                <br>
+                <span>Every Branch.</span>
+            </h1>
+
+            <p id="heroDescription">
+                Experience the same signature flavours,
+                warm hospitality and premium dining
+                experience across every Spice Table location.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#branches" class="button primary">
+                    Explore Branches
+                </a>
+                <a href="#menu" class="button secondary">
+                    View Menu
+                </a>
+                <a href="#reservation" class="button primary" style="background: #231f1b; border: 1px solid #d8b66c; color: #d8b66c;">
+                    Book a Table
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <span id="aboutBadge">
+            THE SPICE TABLE
+        </span>
+
+        <h2 id="aboutHeading">
+            A Taste That Brings
+            <br>
+            Everyone Together
+        </h2>
+
+        <p id="aboutDescription">
+            From family dinners to celebrations with friends,
+            The Spice Table brings authentic flavours,
+            contemporary presentation and memorable
+            hospitality to every location.
+        </p>
+    </section>
+
+    <!-- BRANCHES -->
+    <section class="branches" id="branches">
+        <div class="section-heading">
+            <span>OUR LOCATIONS</span>
+            <h2>Find Your<br>Nearest Table</h2>
+            <p>Choose your nearest branch to get directions, contact details and opening hours.</p>
+        </div>
+
+        <!-- DYNAMIC BRANCH GRID -->
+        <div class="branch-grid" id="branchesGrid">
+            <!-- BRANCH 1 -->
+            <article class="branch-card">
+                <div class="branch-image coimbatore">
+                    <span class="branch-number">BRANCH 01</span>
+                </div>
+                <div class="branch-content">
+                    <span class="location">📍 COIMBATORE</span>
+                    <h3>Gandhipuram</h3>
+                    <p>Our flagship restaurant in the heart of Coimbatore.</p>
+                    <div class="details">
+                        <div>📍 24 Avinashi Road, Gandhipuram</div>
+                        <div>🕐 11:00 AM – 11:00 PM</div>
+                        <div>📞 +91 87789 60660</div>
+                    </div>
+                    <div class="actions">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Gandhipuram+Coimbatore" target="_blank" rel="noopener noreferrer" class="branch-button">
+                            Get Directions →
+                        </a>
+                        <a href="tel:+918778960660" class="branch-button outline">
+                            Call
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- BRANCH 2 -->
+            <article class="branch-card">
+                <div class="branch-image pollachi">
+                    <span class="branch-number">BRANCH 02</span>
+                </div>
+                <div class="branch-content">
+                    <span class="location">📍 POLLACHI</span>
+                    <h3>Main Road</h3>
+                    <p>A warm dining destination for families and food lovers.</p>
+                    <div class="details">
+                        <div>📍 18 Main Road, Pollachi</div>
+                        <div>🕐 11:00 AM – 10:30 PM</div>
+                        <div>📞 +91 87789 60660</div>
+                    </div>
+                    <div class="actions">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Main+Road+Pollachi" target="_blank" rel="noopener noreferrer" class="branch-button">
+                            Get Directions →
+                        </a>
+                        <a href="tel:+918778960660" class="branch-button outline">
+                            Call
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- BRANCH 3 -->
+            <article class="branch-card">
+                <div class="branch-image tiruppur">
+                    <span class="branch-number">BRANCH 03</span>
+                </div>
+                <div class="branch-content">
+                    <span class="location">📍 TIRUPPUR</span>
+                    <h3>Avinashi Road</h3>
+                    <p>Contemporary interiors, traditional flavours and premium dining.</p>
+                    <div class="details">
+                        <div>📍 52 Avinashi Road, Tiruppur</div>
+                        <div>🕐 11:00 AM – 11:00 PM</div>
+                        <div>📞 +91 87789 60660</div>
+                    </div>
+                    <div class="actions">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Avinashi+Road+Tiruppur" target="_blank" rel="noopener noreferrer" class="branch-button">
+                            Get Directions →
+                        </a>
+                        <a href="tel:+918778960660" class="branch-button outline">
+                            Call
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- BRANCH 4 -->
+            <article class="branch-card">
+                <div class="branch-image chennai">
+                    <span class="branch-number">BRANCH 04</span>
+                </div>
+                <div class="branch-content">
+                    <span class="location">📍 CHENNAI</span>
+                    <h3>Anna Nagar</h3>
+                    <p>A modern urban dining experience with our signature flavours.</p>
+                    <div class="details">
+                        <div>📍 11 Anna Nagar, Chennai</div>
+                        <div>🕐 11:00 AM – 11:30 PM</div>
+                        <div>📞 +91 87789 60660</div>
+                    </div>
+                    <div class="actions">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Anna+Nagar+Chennai" target="_blank" rel="noopener noreferrer" class="branch-button">
+                            Get Directions →
+                        </a>
+                        <a href="tel:+918778960660" class="branch-button outline">
+                            Call
+                        </a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- MENU -->
+    <section class="menu-section" id="menu">
+        <span>SIGNATURE MENU</span>
+        <h2>Flavours Worth<br>Travelling For</h2>
+        <p>A selection of our most loved dishes, available across every branch.</p>
+
+        <!-- DYNAMIC MENU GRID -->
+        <div class="menu-grid" id="menuGrid">
+            <div class="menu-item">
+                <div>
+                    <h3>Signature Chicken Biryani</h3>
+                    <p>Fragrant basmati rice, tender chicken and spices.</p>
+                </div>
+                <strong>₹320</strong>
+            </div>
+
+            <div class="menu-item">
+                <div>
+                    <h3>Mutton Pepper Roast</h3>
+                    <p>Slow-cooked mutton with roasted pepper.</p>
+                </div>
+                <strong>₹420</strong>
+            </div>
+
+            <div class="menu-item">
+                <div>
+                    <h3>Paneer Tikka</h3>
+                    <p>Char-grilled paneer with peppers and onions.</p>
+                </div>
+                <strong>₹280</strong>
+            </div>
+
+            <div class="menu-item">
+                <div>
+                    <h3>Butter Naan & Curry</h3>
+                    <p>Freshly baked naan with house curry.</p>
+                </div>
+                <strong>₹240</strong>
+            </div>
+        </div>
+    </section>
+
+    <!-- TABLE RESERVATION -->
+    <section class="reservation-section" id="reservation">
+        <span>RESERVE A TABLE</span>
+        <h2>Book Your Dining<br>Experience</h2>
+        <p>Reserve a table in advance at any of our branches. We look forward to serving you.</p>
+
+        <div class="reservation-card">
+            <form id="reservationForm" class="reservation-form">
+                <!-- Anti-spam Honeypot field (hidden from legitimate visitors) -->
+                <div style="display: none !important;" aria-hidden="true">
+                    <label for="resWebsiteUrl">Leave this field blank</label>
+                    <input type="text" id="resWebsiteUrl" name="website_url" tabindex="-1" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="resBranch">Select Branch</label>
+                    <select id="resBranch" class="form-control" required>
+                        <option value="">Choose a branch...</option>
+                        <option value="Gandhipuram (Coimbatore)">Gandhipuram (Coimbatore)</option>
+                        <option value="Main Road (Pollachi)">Main Road (Pollachi)</option>
+                        <option value="Avinashi Road (Tiruppur)">Avinashi Road (Tiruppur)</option>
+                        <option value="Anna Nagar (Chennai)">Anna Nagar (Chennai)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="resGuests">Number of Guests</label>
+                    <select id="resGuests" class="form-control" required>
+                        <option value="1">1 Person</option>
+                        <option value="2" selected>2 People</option>
+                        <option value="3">3 People</option>
+                        <option value="4">4 People</option>
+                        <option value="5">5 People</option>
+                        <option value="6">6 People</option>
+                        <option value="8">8+ People (Group)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="resName">Your Full Name</label>
+                    <input type="text" id="resName" class="form-control" placeholder="e.g. Rahul Sharma" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="resPhone">Phone Number</label>
+                    <input type="tel" id="resPhone" class="form-control" placeholder="e.g. +91 98765 43210" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="resDate">Reservation Date</label>
+                    <input type="date" id="resDate" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="resTime">Preferred Time</label>
+                    <select id="resTime" class="form-control" required>
+                        <option value="12:00 PM">12:00 PM (Lunch)</option>
+                        <option value="01:00 PM">01:00 PM (Lunch)</option>
+                        <option value="02:00 PM">02:00 PM (Lunch)</option>
+                        <option value="07:00 PM" selected>07:00 PM (Dinner)</option>
+                        <option value="08:00 PM">08:00 PM (Dinner)</option>
+                        <option value="09:00 PM">09:00 PM (Dinner)</option>
+                        <option value="10:00 PM">10:00 PM (Dinner)</option>
+                    </select>
+                </div>
+
+                <div class="form-group-full form-group">
+                    <label for="resEmail">Email Address (Optional)</label>
+                    <input type="email" id="resEmail" class="form-control" placeholder="e.g. rahul@example.com">
+                </div>
+
+                <div class="form-group-full form-group">
+                    <label for="resNotes">Special Requests / Seating Preference</label>
+                    <textarea id="resNotes" class="form-control" placeholder="Window table, high chair, birthday celebration, dietary preferences..."></textarea>
+                </div>
+
+                <div class="form-group-full">
+                    <button type="submit" id="resSubmitBtn" class="reservation-btn">
+                        <span>Confirm Reservation</span> →
+                    </button>
+                    <div id="resStatusMsg" class="reservation-status-msg"></div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="cta" id="contact">
+        <span>YOUR TABLE AWAITS</span>
+        <h2 id="ctaHeading">
+            Visit Us At
+            <br>
+            Your Nearest Branch.
+        </h2>
+        <p id="ctaDescription">
+            Choose your nearest location and experience The Spice Table.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="https://wa.me/918778960660?text=Hi%2C%20I%20would%20like%20to%20make%20a%20reservation."
+                target="_blank" rel="noopener noreferrer" class="button primary" id="contactWhatsAppBtn">
+                WhatsApp Reservation
+            </a>
+
+            <a href="mailto:splohith07@gmail.com?subject=Table%20Reservation%20-%20The%20Spice%20Table"
+                class="button secondary" id="contactEmailBtn">
+                Email Us
+            </a>
+
+            <a href="tel:+918778960660" class="button secondary" id="contactPhoneBtn">
+                Call Us
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <h3 id="footerBrand">The Spice Table</h3>
+        <p id="footerTagline">Authentic flavours. Multiple destinations.</p>
+        <p id="footerContact">
+            <a href="mailto:splohith07@gmail.com" id="footerEmail">splohith07@gmail.com</a> · 
+            <a href="tel:+918778960660" id="footerPhone">+91 87789 60660</a>
+        </p>
+        <small id="footerCopyright">© 2026 The Spice Table</small>
+        <div style="margin-top: 15px;">
+            <a href="#" id="footerOwnerLink" style="color: #927341; font-size: 12px; text-decoration: underline;">
+                Owner Portal
+            </a>
+        </div>
+    </footer>
+
+    <!-- OWNER LOGIN MODAL -->
+    <div id="ownerLoginModal" class="modal-overlay">
+        <div class="modal-container">
+            <button class="modal-close-btn" id="closeLoginModalBtn">&times;</button>
+            <h3 class="modal-title">Owner Sign In</h3>
+            <p class="modal-subtitle">Log in to update restaurant details, branches, menu, and view reservations.</p>
+
+            <form id="ownerLoginForm" style="display: grid; gap: 16px;">
+                <div class="form-group">
+                    <label for="ownerEmail">Owner Email</label>
+                    <input type="email" id="ownerEmail" class="form-control" value="splohith07@gmail.com" placeholder="splohith07@gmail.com" autocomplete="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="ownerPassword">Password</label>
+                    <input type="password" id="ownerPassword" class="form-control" placeholder="Enter your password" autocomplete="current-password" required>
+                </div>
+
+                <div id="loginErrorMsg" class="reservation-status-msg error" style="margin-top: 5px;"></div>
+
+                <button type="submit" id="loginSubmitBtn" class="reservation-btn" style="margin-top: 10px;">
+                    <span>Sign In to Dashboard</span>
+                </button>
+
+                <div style="text-align: center; margin-top: 8px;">
+                    <a href="#" id="forgotPasswordBtn" style="color: #d8b66c; font-size: 12px;">Forgot Password?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- OWNER DASHBOARD MODAL -->
+    <div id="ownerDashboardModal" class="modal-overlay">
+        <div class="modal-container large">
+            <div class="dashboard-header">
+                <div>
+                    <h3 class="modal-title">Restaurant Management Portal</h3>
+                    <p class="modal-subtitle" style="margin-bottom: 0;">Connected to Cloud Firestore: <code>restaurant-multibranch</code></p>
+                </div>
+                <button class="modal-close-btn" id="closeDashboardModalBtn">&times;</button>
+            </div>
+
+            <!-- TABS -->
+            <div class="dashboard-tabs">
+                <button class="tab-btn active" data-tab="tab-settings">🏢 General & Contact</button>
+                <button class="tab-btn" data-tab="tab-branches">📍 Branches (<span id="branchCountBadge">4</span>)</button>
+                <button class="tab-btn" data-tab="tab-menu">🍽️ Menu Items (<span id="menuCountBadge">4</span>)</button>
+                <button class="tab-btn" data-tab="tab-reservations">📅 Reservations (<span id="resCountBadge">0</span>)</button>
+            </div>
+
+            <div class="dashboard-body">
+                <!-- TAB 1: GENERAL SETTINGS -->
+                <div id="tab-settings" class="tab-panel active">
+                    <form id="settingsForm" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;">
+                        <div class="form-group">
+                            <label for="settingRestName">Restaurant Name</label>
+                            <input type="text" id="settingRestName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="settingTagline">Tagline / Eyebrow</label>
+                            <input type="text" id="settingTagline" class="form-control">
+                        </div>
+                        <div class="form-group form-group-full">
+                            <label for="settingHeroTitle">Hero Title</label>
+                            <input type="text" id="settingHeroTitle" class="form-control" required>
+                        </div>
+                        <div class="form-group form-group-full">
+                            <label for="settingHeroDesc">Hero Description</label>
+                            <textarea id="settingHeroDesc" class="form-control" rows="2"></textarea>
+                        </div>
+                        <div class="form-group form-group-full">
+                            <label for="settingAboutHeading">About Heading</label>
+                            <input type="text" id="settingAboutHeading" class="form-control">
+                        </div>
+                        <div class="form-group form-group-full">
+                            <label for="settingAboutDesc">About Description</label>
+                            <textarea id="settingAboutDesc" class="form-control" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="settingPhone">Primary Phone Number</label>
+                            <input type="text" id="settingPhone" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="settingEmail">Contact Email</label>
+                            <input type="email" id="settingEmail" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="settingWhatsapp">WhatsApp Number (digits with country code, e.g. 918778960660)</label>
+                            <input type="text" id="settingWhatsapp" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="settingFooterTagline">Footer Tagline</label>
+                            <input type="text" id="settingFooterTagline" class="form-control">
+                        </div>
+
+                        <div class="form-group-full" style="margin-top: 10px;">
+                            <button type="submit" id="saveSettingsBtn" class="reservation-btn" style="max-width: 280px;">
+                                💾 Save Settings to Firestore
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- TAB 2: BRANCHES -->
+                <div id="tab-branches" class="tab-panel">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h4 style="color: #d8b66c; font-size: 16px;">Active Restaurant Branches</h4>
+                        <button id="showAddBranchBtn" class="owner-btn primary">+ Add New Branch</button>
+                    </div>
+
+                    <!-- ADD/EDIT BRANCH FORM (hidden by default) -->
+                    <div id="branchFormCard" style="display: none; background: #24201c; border: 1px solid #d8b66c; border-radius: 12px; padding: 22px; margin-bottom: 25px;">
+                        <h4 id="branchFormTitle" style="color: #d8b66c; margin-bottom: 15px;">Add New Branch</h4>
+                        <form id="branchEditForm" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                            <input type="hidden" id="branchEditId">
+                            <div class="form-group">
+                                <label for="branchEditNumber">Branch Number (e.g. BRANCH 05)</label>
+                                <input type="text" id="branchEditNumber" class="form-control" placeholder="BRANCH 05" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="branchEditCity">City</label>
+                                <input type="text" id="branchEditCity" class="form-control" placeholder="MADURAI" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="branchEditName">Branch / Area Name</label>
+                                <input type="text" id="branchEditName" class="form-control" placeholder="KK Nagar" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="branchEditPhone">Phone Number</label>
+                                <input type="text" id="branchEditPhone" class="form-control" placeholder="+91 87789 60660" required>
+                            </div>
+                            <div class="form-group form-group-full">
+                                <label for="branchEditAddress">Address</label>
+                                <input type="text" id="branchEditAddress" class="form-control" placeholder="15 East Street, KK Nagar, Madurai" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="branchEditHours">Opening Hours</label>
+                                <input type="text" id="branchEditHours" class="form-control" placeholder="11:00 AM – 11:00 PM" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="branchEditMap">Google Maps Search Query</label>
+                                <input type="text" id="branchEditMap" class="form-control" placeholder="KK+Nagar+Madurai">
+                            </div>
+                            <div class="form-group form-group-full">
+                                <label for="branchEditImage">Cover Image URL</label>
+                                <input type="url" id="branchEditImage" class="form-control" placeholder="https://images.unsplash.com/photo-...">
+                            </div>
+                            <div class="form-group form-group-full">
+                                <label for="branchEditDesc">Description</label>
+                                <textarea id="branchEditDesc" class="form-control" rows="2" placeholder="Brief description of this branch..."></textarea>
+                            </div>
+                            <div class="form-group-full" style="display: flex; gap: 10px; margin-top: 5px;">
+                                <button type="submit" class="owner-btn primary">Save Branch</button>
+                                <button type="button" id="cancelBranchFormBtn" class="owner-btn outline">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- BRANCHES LIST -->
+                    <div id="branchesMgmtGrid" class="mgmt-grid"></div>
+                </div>
+
+                <!-- TAB 3: MENU ITEMS -->
+                <div id="tab-menu" class="tab-panel">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h4 style="color: #d8b66c; font-size: 16px;">Restaurant Menu Items</h4>
+                        <button id="showAddMenuBtn" class="owner-btn primary">+ Add Menu Item</button>
+                    </div>
+
+                    <!-- ADD/EDIT MENU FORM (hidden by default) -->
+                    <div id="menuFormCard" style="display: none; background: #24201c; border: 1px solid #d8b66c; border-radius: 12px; padding: 22px; margin-bottom: 25px;">
+                        <h4 id="menuFormTitle" style="color: #d8b66c; margin-bottom: 15px;">Add New Dish</h4>
+                        <form id="menuEditForm" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                            <input type="hidden" id="menuEditId">
+                            <div class="form-group">
+                                <label for="menuEditName">Item / Dish Name</label>
+                                <input type="text" id="menuEditName" class="form-control" placeholder="Tandoori Prawns" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="menuEditPrice">Price (with symbol)</label>
+                                <input type="text" id="menuEditPrice" class="form-control" placeholder="₹390" required>
+                            </div>
+                            <div class="form-group form-group-full">
+                                <label for="menuEditDesc">Description</label>
+                                <input type="text" id="menuEditDesc" class="form-control" placeholder="Marinated prawns cooked in charcoal clay oven.">
+                            </div>
+                            <div class="form-group form-group-full" style="display: flex; align-items: center; gap: 10px;">
+                                <input type="checkbox" id="menuEditAvailable" checked style="width: 18px; height: 18px; accent-color: #d8b66c;">
+                                <label for="menuEditAvailable" style="margin: 0; cursor: pointer;">Available / In Stock</label>
+                            </div>
+                            <div class="form-group-full" style="display: flex; gap: 10px; margin-top: 5px;">
+                                <button type="submit" class="owner-btn primary">Save Dish</button>
+                                <button type="button" id="cancelMenuFormBtn" class="owner-btn outline">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- MENU LIST -->
+                    <div id="menuMgmtGrid" class="mgmt-grid"></div>
+                </div>
+
+                <!-- TAB 4: RESERVATIONS -->
+                <div id="tab-reservations" class="tab-panel">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <h4 style="color: #d8b66c; font-size: 16px;">Incoming Table Reservations</h4>
+                        <button id="refreshReservationsBtn" class="owner-btn outline" style="font-size: 12px;">🔄 Refresh</button>
+                    </div>
+
+                    <div class="mgmt-table-wrapper">
+                        <table class="mgmt-table">
+                            <thead>
+                                <tr>
+                                    <th>Date & Time</th>
+                                    <th>Branch</th>
+                                    <th>Customer</th>
+                                    <th>Phone / Email</th>
+                                    <th>Guests</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reservationsTableBody">
+                                <tr>
+                                    <td colspan="7" style="text-align: center; color: #888; padding: 25px;">
+                                        Loading reservations from Firestore...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toastContainer"></div>
+
+    <!-- SCRIPT (ES Module) -->
+    <script type="module" src="multi-branch.js"></script>
+
+</body>
+
+</html>
