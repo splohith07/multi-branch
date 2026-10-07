@@ -627,6 +627,7 @@ function setupAuthAndModals() {
     const ownerSignOutBtn = document.getElementById("ownerSignOutBtn");
     const navOwnerBtn = document.getElementById("navOwnerBtn");
     const footerOwnerLink = document.getElementById("footerOwnerLink");
+    const mobileOwnerBtn = document.getElementById("mobileOwnerBtn");
 
     const loginModal = document.getElementById("ownerLoginModal");
     const closeLoginModalBtn = document.getElementById("closeLoginModalBtn");
@@ -676,6 +677,20 @@ function setupAuthAndModals() {
     if (footerOwnerLink) {
         footerOwnerLink.addEventListener("click", (e) => {
             e.preventDefault();
+            if (currentAuthUser) {
+                openDashboard();
+            } else {
+                openLogin();
+            }
+        });
+    }
+
+    if (mobileOwnerBtn) {
+        mobileOwnerBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (window._closeMobileMenu) {
+                window._closeMobileMenu();
+            }
             if (currentAuthUser) {
                 openDashboard();
             } else {
@@ -793,6 +808,10 @@ function setupAuthAndModals() {
                     navOwnerBtn.style.color = "";
                     navOwnerBtn.style.borderColor = "";
                 }
+                if (mobileOwnerBtn) {
+                    mobileOwnerBtn.innerHTML = '<span class="owner-icon">🔐</span> <span id="mobileOwnerBtnText">Owner Login</span>';
+                    mobileOwnerBtn.classList.remove("logged-in");
+                }
                 showToast("Signed out successfully");
             } catch (err) {
                 console.error("Sign out error:", err);
@@ -815,6 +834,10 @@ function setupAuthAndModals() {
                     navOwnerBtn.style.color = "";
                     navOwnerBtn.style.borderColor = "";
                 }
+                if (mobileOwnerBtn) {
+                    mobileOwnerBtn.innerHTML = '<span class="owner-icon">🔐</span> <span id="mobileOwnerBtnText">Owner Login</span>';
+                    mobileOwnerBtn.classList.remove("logged-in");
+                }
                 showToast("Access denied: Not an authorized owner.", true);
                 return;
             }
@@ -827,6 +850,10 @@ function setupAuthAndModals() {
                 navOwnerBtn.style.color = "#d8b66c";
                 navOwnerBtn.style.borderColor = "#d8b66c";
             }
+            if (mobileOwnerBtn) {
+                mobileOwnerBtn.innerHTML = '<span class="owner-icon">👑</span> <span id="mobileOwnerBtnText">Owner Dashboard</span>';
+                mobileOwnerBtn.classList.add("logged-in");
+            }
             loadReservationsRealtime();
         } else {
             currentAuthUser = null;
@@ -836,6 +863,10 @@ function setupAuthAndModals() {
                 navOwnerBtn.textContent = "Owner Login";
                 navOwnerBtn.style.color = "";
                 navOwnerBtn.style.borderColor = "";
+            }
+            if (mobileOwnerBtn) {
+                mobileOwnerBtn.innerHTML = '<span class="owner-icon">🔐</span> <span id="mobileOwnerBtnText">Owner Login</span>';
+                mobileOwnerBtn.classList.remove("logged-in");
             }
             if (unsubscribeReservations) {
                 unsubscribeReservations();
@@ -1482,9 +1513,91 @@ function observeCards() {
 }
 
 // =========================================
+// RESPONSIVE MOBILE NAVIGATION
+// =========================================
+function setupMobileNavigation() {
+    const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+    const closeMobileMenuBtn = document.getElementById("closeMobileMenuBtn");
+    const mobileNavDrawer = document.getElementById("mobileNavDrawer");
+    const mobileNavBackdrop = document.getElementById("mobileNavBackdrop");
+    const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+
+    function openMenu() {
+        if (!mobileNavDrawer || !mobileNavBackdrop) return;
+        mobileNavDrawer.classList.add("is-open");
+        mobileNavBackdrop.classList.add("is-open");
+        if (mobileMenuToggle) {
+            mobileMenuToggle.classList.add("is-active");
+            mobileMenuToggle.setAttribute("aria-expanded", "true");
+        }
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeMenu() {
+        if (!mobileNavDrawer || !mobileNavBackdrop) return;
+        mobileNavDrawer.classList.remove("is-open");
+        mobileNavBackdrop.classList.remove("is-open");
+        if (mobileMenuToggle) {
+            mobileMenuToggle.classList.remove("is-active");
+            mobileMenuToggle.setAttribute("aria-expanded", "false");
+        }
+        document.body.style.overflow = "";
+    }
+
+    window._closeMobileMenu = closeMenu;
+
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener("click", () => {
+            if (mobileNavDrawer && mobileNavDrawer.classList.contains("is-open")) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+    }
+
+    if (closeMobileMenuBtn) {
+        closeMobileMenuBtn.addEventListener("click", closeMenu);
+    }
+
+    if (mobileNavBackdrop) {
+        mobileNavBackdrop.addEventListener("click", closeMenu);
+    }
+
+    // Close on Escape key
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && mobileNavDrawer && mobileNavDrawer.classList.contains("is-open")) {
+            closeMenu();
+        }
+    });
+
+    // Close when any mobile nav link is clicked
+    mobileNavLinks.forEach(link => {
+        link.addEventListener("click", (e) => {
+            const href = link.getAttribute("href");
+            closeMenu();
+            if (href === "index.html" || href === "#" || href === "#top") {
+                if (window.location.pathname.endsWith("index.html") || window.location.pathname.endsWith("/")) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+            }
+        });
+    });
+
+    // Close if resized to desktop width
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 900 && mobileNavDrawer && mobileNavDrawer.classList.contains("is-open")) {
+            closeMenu();
+        }
+    });
+}
+
+// =========================================
 // INITIALIZATION
 // =========================================
 document.addEventListener("DOMContentLoaded", async () => {
+    setupMobileNavigation();
     setupSmoothScrolling();
     setupReservationForm();
     setupAuthAndModals();
