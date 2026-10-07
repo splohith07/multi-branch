@@ -34,7 +34,7 @@
             <span>THE</span> SPICE TABLE
         </a>
 
-        <nav>
+        <nav class="desktop-nav">
             <a href="#branches">Branches</a>
             <a href="#menu">Menu</a>
             <a href="#about">About</a>
@@ -42,7 +42,7 @@
             <a href="#contact">Contact</a>
         </nav>
 
-        <div style="display: flex; align-items: center; gap: 10px;">
+        <div class="desktop-nav-actions" style="display: flex; align-items: center; gap: 10px;">
             <a href="#reservation" class="nav-button">
                 Book a Table
             </a>
@@ -50,7 +50,64 @@
                 Owner Login
             </button>
         </div>
+
+        <!-- HAMBURGER BUTTON (Mobile only) -->
+        <button id="mobileMenuToggle" class="mobile-menu-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNavDrawer">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+        </button>
     </header>
+
+    <!-- MOBILE NAVIGATION OVERLAY & DRAWER -->
+    <div id="mobileNavBackdrop" class="mobile-nav-backdrop" aria-hidden="true"></div>
+    <div id="mobileNavDrawer" class="mobile-nav-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+        <div class="mobile-nav-header">
+            <a href="index.html" class="logo mobile-drawer-logo">
+                <span>THE</span> SPICE TABLE
+            </a>
+            <button id="closeMobileMenuBtn" class="mobile-nav-close-btn" type="button" aria-label="Close navigation menu">&times;</button>
+        </div>
+
+        <nav class="mobile-nav-links">
+            <a href="index.html" class="mobile-nav-link" id="mobileLinkHome">
+                <span>Home</span>
+                <span class="link-arrow">→</span>
+            </a>
+            <a href="#about" class="mobile-nav-link" id="mobileLinkAbout">
+                <span>About</span>
+                <span class="link-arrow">→</span>
+            </a>
+            <a href="#branches" class="mobile-nav-link" id="mobileLinkBranches">
+                <span>Branches</span>
+                <span class="link-arrow">→</span>
+            </a>
+            <a href="#menu" class="mobile-nav-link" id="mobileLinkMenu">
+                <span>Menu</span>
+                <span class="link-arrow">→</span>
+            </a>
+            <a href="#offers" class="mobile-nav-link" id="mobileLinkOffers">
+                <span>Offers</span>
+                <span class="link-arrow">→</span>
+            </a>
+            <a href="#reservation" class="mobile-nav-link highlight" id="mobileLinkBook">
+                <span>Book a Table</span>
+                <span class="link-badge">Reserve</span>
+            </a>
+            <a href="#contact" class="mobile-nav-link" id="mobileLinkContact">
+                <span>Contact</span>
+                <span class="link-arrow">→</span>
+            </a>
+        </nav>
+
+        <!-- SUBTLE / SECONDARY OWNER LOGIN -->
+        <div class="mobile-nav-footer">
+            <button id="mobileOwnerBtn" class="mobile-owner-btn" type="button">
+                <span class="owner-icon">🔐</span>
+                <span id="mobileOwnerBtnText">Owner Login</span>
+            </button>
+        </div>
+    </div>
 
     <!-- HERO -->
     <section class="hero">
@@ -216,6 +273,9 @@
             </article>
         </div>
     </section>
+
+    <!-- OFFERS ANCHOR -->
+    <div id="offers" style="position: relative; top: -80px; visibility: hidden;"></div>
 
     <!-- MENU -->
     <section class="menu-section" id="menu">
@@ -384,8 +444,8 @@
         </p>
         <small id="footerCopyright">© 2026 The Spice Table</small>
         <div style="margin-top: 15px;">
-            <a href="#" id="footerOwnerLink" style="color: #927341; font-size: 12px; text-decoration: underline;">
-                Owner Portal
+            <a href="#" id="footerOwnerLink" class="footer-owner-link" style="color: #927341; font-size: 12px; text-decoration: underline; display: inline-block; padding: 6px 12px;">
+                Owner Login
             </a>
         </div>
     </footer>
